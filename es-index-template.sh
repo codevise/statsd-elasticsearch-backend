@@ -12,23 +12,27 @@ curl -XPUT localhost:9200/_template/statsd-template -d '
                     "format": "dateOptionalTime",
                     "type": "date"
                 },
-                "val": {
+                "value": {
                     "type": "long",
                     "index": "not_analyzed"
                 },
-                "ns": {
+                "namespace": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-                "grp": {
+                "group": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-                "tgt": {
+                "target": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-                "act": {
+		"account": {
+                    "type": "long",
+                    "index": "not_analyzed"
+                },
+                "key": {
                     "type": "string",
                     "index": "not_analyzed"
                 }
