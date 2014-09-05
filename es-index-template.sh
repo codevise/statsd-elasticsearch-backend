@@ -35,7 +35,12 @@ curl -XPUT localhost:9200/_template/statsd-template -d '
                 "key": {
                     "type": "string",
                     "index": "not_analyzed"
-                }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+		
             }
         },
         "timer" : {
