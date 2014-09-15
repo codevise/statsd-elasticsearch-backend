@@ -26,6 +26,7 @@ Add a structure to your configuration called "elasticsearch"
  elasticsearch: {
 	 port:          9200,
 	 host:          "localhost",
+	 path:          "/",
 	 indexPrefix:   "statsd",
 	 countType:     "counter",
 	 timerType:     "timer",
@@ -33,11 +34,25 @@ Add a structure to your configuration called "elasticsearch"
  }
 ```
 
+The field _path_ is equal to "/" if you directly connect to ES. 
+But when ES is on behind the proxy (nginx,haproxy), for example http://domain.com/elastic-proxy/, then following settings required:
+```
+    port: 80,
+    host: "domain.com",
+    path: "/elastic-proxy/",
+```
+Nginx config proxy example:
+```
+    location /elastic-proxy/ {
+        proxy_pass http://localhost:9200/;
+    }
+```
+
 The field _indexPrefix_ is used as the prefix for your dynamic indices: for example "statsd-2014.02.04"
 
 The type configuration options allow you to specify different elasticsearch _types for each statsd measurement.
 
-To configure Elasticsearch to automatically apply index template settings based on a naming pattern look at the es-index-template.sh file.  It will probably need customization (the timer_data type) for your particular statsd configuration (re: threshold pct).
+To configure Elasticsearch to automatically apply index template settings based on a naming pattern look at the es-index-template.sh file.  It will probably need customization (the timer_data type) for your particular statsd configuration (re: threshold pct and bins).
 
 ## Metric Name Mapping
 
