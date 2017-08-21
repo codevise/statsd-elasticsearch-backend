@@ -1,4 +1,4 @@
-curl -XPUT localhost:9200/_template/statsd-template -d '
+curl -XPUT "${ES_HOST:-localhost}:${ES_PORT:-9200}/_template/statsd-template" -d '
 {
     "template" : "statsd-*",
     "settings" : {
@@ -9,49 +9,66 @@ curl -XPUT localhost:9200/_template/statsd-template -d '
             "_source" : { "enabled" : true },
             "properties": {
                 "@timestamp": {
-                    "format": "dateOptionalTime",
                     "type": "date"
                 },
-                "value": {
-                    "type": "long",
+                "val": {
+                    "type": "double",
                     "index": "not_analyzed"
                 },
-                "namespace": {
+                "ns": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-                "group": {
+                "grp": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-                "target": {
+                "tgt": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-		"account": {
-                    "type": "long",
+                "act": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
+            }
+        },
+        "gauge" : {
+            "_source" : { "enabled" : true },
+            "properties": {
+                "@timestamp": {
+                    "type": "date"
+                },
+                "val": {
+                    "type": "double",
                     "index": "not_analyzed"
                 },
-                "key": {
+                "ns": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-                "type": {
+                "grp": {
                     "type": "string",
                     "index": "not_analyzed"
                 },
-		
+                "tgt": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "act": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
             }
         },
         "timer" : {
             "_source" : { "enabled" : true },
             "properties": {
                 "@timestamp": {
-                    "format": "dateOptionalTime",
                     "type": "date"
                 },
                 "val": {
-                    "type": "long",
+                    "type": "double",
                     "index": "not_analyzed"
                 },
                 "ns": {
@@ -76,7 +93,6 @@ curl -XPUT localhost:9200/_template/statsd-template -d '
             "_source" : { "enabled" : true },
             "properties": {
                 "@timestamp": {
-                    "format": "dateOptionalTime",
                     "type": "date"
                 },
                 "count_ps": {

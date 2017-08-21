@@ -7,7 +7,7 @@
   ],
   "name": "statsd-elasticsearch-backend",
   "description": "A StatsD backend for Elasticsearch",
-  "version": "0.2.0",
+  "version": "0.4.2",
   "homepage": "https://github.com/markkimsal/statsd-elasticsearch-backend",
   "repository": {
     "type": "git",
@@ -21,7 +21,9 @@
   "engines": {
     "node": ">=0.8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "named-regexp": "^0.1.1"
+  },
   "devDependencies": {},
   "main": "lib/elasticsearch.js"
 }
