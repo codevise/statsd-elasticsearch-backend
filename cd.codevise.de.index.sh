@@ -24,6 +24,10 @@ curl -XPUT localhost:9200/_template/statsd-template -d '
                     "type": "string",
                     "index": "not_analyzed"
                 },
+		"region": {
+		    "type": "string",
+                    "index": "not_analyzed"
+		}
                 "group": {
                     "type": "string",
                     "index": "not_analyzed"
@@ -44,7 +48,6 @@ curl -XPUT localhost:9200/_template/statsd-template -d '
                     "type": "string",
                     "index": "not_analyzed"
                 },
-		
             }
         },
         "timer" : {
